@@ -36,7 +36,7 @@ function App() {
       <Footer />
 
   <div className="back-to-top"><i className="bx bx-up-arrow-alt"></i></div>
-  {/* <div id="preloader"></div> */}
+  <div id="preloader"></div>
 
 
     </div>

@@ -11,7 +11,6 @@
   function aos_init() {
     AOS.init({
       duration: 1000,
-      once: true
     });
   }
 
@@ -37,6 +36,9 @@
     // });
 
     // // Initiate aos_init() function
+    $('html, body').animate({
+      scrollTop: 0
+    }, 'easeInOutExpo')
     aos_init();
 
   });
@@ -157,12 +159,6 @@
       return false;
     });
 
-    // jQuery counterUp
-    $('[data-toggle="counter-up"]').counterUp({
-      delay: 10,
-      time: 1000
-    });
-
     // Skills section
     $('.skills-content').waypoint(function() {
       $('.progress .progress-bar').each(function() {
@@ -172,13 +168,6 @@
       offset: '80%'
     });
 
-    // Portfolio details carousel
-    $(".portfolio-details-carousel").owlCarousel({
-      autoplay: true,
-      dots: true,
-      loop: true,
-      items: 1
-    });
   }, 1000);
   // Hero typed
 
