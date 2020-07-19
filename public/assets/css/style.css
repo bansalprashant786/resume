@@ -1028,6 +1028,12 @@ section {
   background: #0678e3;
 }
 
+.disabled{
+  border: 1px solid #7f8388 !important;
+  background: #7f8388 !important;
+}
+
+
 @-webkit-keyframes animate-loading {
   0% {
     transform: rotate(0deg);

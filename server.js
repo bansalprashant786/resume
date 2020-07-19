@@ -25,11 +25,27 @@ app.get('*', (req, res) => {
 });
 
 app.post('/contact', (req, res) => {
+	const html = `
+		<div>
+		<div id="personname">
+		Name: ${req.body.personname}
+		</div>
+		<div id="email">
+		Email: ${req.body.email}
+		</div>
+		<div id="subject">
+		Subject: ${req.body.subject}
+		</div>
+		<div id="message">
+		Message: ${req.body.message}
+		</div>
+		</div>
+	`
 	var mailOptions = {
 		from: 'bansalprashant786@gmail.com	',
 		to: 'bansalprashant786@gmail.com',
 		subject:'SomeOne contact',
-		text: JSON.stringify(req.body)
+		html: html
 	};
 
 	transporter.sendMail(mailOptions, function(error, info){

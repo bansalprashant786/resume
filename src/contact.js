@@ -5,6 +5,7 @@ const Contact = () => {
   const [error, seterror] = useState(false);
   const [errors, seterrors] = useState({});
   const [success, setsuccess] = useState(false);
+  const [disabled, setdisabled] = useState(false);
 
   const handleChange = (title, value) => {
     const newFormValues = { ...formValues };
@@ -58,6 +59,7 @@ const Contact = () => {
 
   const handleSubmit = () => {
     if(!isValidation()){
+      setdisabled(true);
       fetch('/contact',{
         method:"POST",
         headers:{ 'Content-Type': 'application/json'},
@@ -66,13 +68,21 @@ const Contact = () => {
       .then(data => {
         console.log('data in success', data)
         if(data.status === 200){
-          setsuccess(true)
+          setsuccess(true);
+          setdisabled(false);
         }
         else{
           setsuccess(false);
-          error(true)
-          seterrors({submit: data.error})
+          seterror(true)
+          seterrors({submit: 'something went wrong'})
+          setdisabled(false)
         }
+      })
+      .catch((error) => {
+        setsuccess(false);
+        seterror(true)
+        seterrors({submit: 'something went wrong'})
+        setdisabled(false)
       })
     }
     else{
@@ -161,7 +171,7 @@ const Contact = () => {
                 {error && errors.submit && <div className="error-message">{error && errors.submit}</div>}
                 { success && <div className="sent-message">Your message has been sent. Thank you!</div>}
               </div>
-              <div className="text-center"><button onClick={handleSubmit}>Send Message</button></div>
+              <div className="text-center"><button className={disabled? 'disabled': ''} disabled={disabled} onClick={handleSubmit}>Send Message</button></div>
             </div>
 
           </div>
