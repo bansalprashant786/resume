@@ -60,3 +60,4 @@ app.post('/contact', (req, res) => {
 app.listen(port, () => {
    console.log(`Server is up on port ${port}!`);
 });
+    // "start": "node server.js",
